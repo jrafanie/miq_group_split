@@ -15,34 +15,35 @@ digraph MiqGroupSplitBefore {
 	service_resources [label="Service\nServiceTemplate"]
 	tenancy_resources [label="ExtManagementSystem\nMiqGroup\nRequest\nRequestTask\nProvider\nService\nServiceTemplate\nServiceTemplateCatalog\nVmOrTemplate\nMiqAeDomain"]
 
-	Tenant -> MiqGroup
-	Tenant -> default_miq_group -> MiqGroup [style="dashed"]
-	MiqUserRole -> MiqGroup
-	MiqUserRole -> MiqProductFeature
-	MiqProductFeature -> MiqUserRole
-	MiqGroup -> User
+	Tenant -> MiqGroup [label="E"]
+	Tenant -> MiqGroup [label="UG"]
+	Tenant -> default_miq_group -> MiqGroup [style="dashed", label="UG"]
+	MiqUserRole -> MiqGroup [label="E"]
+	MiqUserRole -> MiqProductFeature [label="E"]
+	MiqProductFeature -> MiqUserRole [label="E"]
+	MiqGroup -> User [label="UG"]
 
 	# OwnershipMixin
-	MiqGroup -> owned_vms, group_owned_resources, widgetset_content, service_resources
-	User -> evm_owner -> owned_vms, service_resources [style="dashed"]
+	MiqGroup -> owned_vms, group_owned_resources, widgetset_content, service_resources [label="E"]
+	User -> evm_owner -> owned_vms, service_resources [style="dashed", label="E"]
 
-	User -> MiqUserRole, MiqGroup
-	User -> current_tenant, current_group, filters [style="dashed"]
-	User -> user_levels -> MiqUserRole [style="dashed"]
-	MiqGroup -> filters [style="dashed"]
+	User -> current_tenant, current_group [label="UG"]
+	User -> filters [style="dashed", label="E"]
+	User -> user_levels -> MiqUserRole [style="dashed", label="E"]
+	MiqGroup -> filters [style="dashed", label="E"]
 
-	User -> user_owned_resources, widgetset_content
-	current_group -> MiqGroup [style="dashed"]
-	MiqUserRole -> current_group -> User [style="dashed"]
-	Tenant -> current_tenant -> current_group [style="dashed"]
+	User -> user_owned_resources, widgetset_content [label="E"]
+	current_group -> MiqGroup [style="dashed", label="UG"]
+	MiqUserRole -> current_group -> User [style="dashed", label="E"]
+	Tenant -> current_tenant -> current_group [style="dashed", label="UG"]
 
 	# TenancyMixin
-	MiqGroup -> owning_group_tenant -> tenancy_resources [style="dashed"]
-	User -> current_user_tenant -> tenancy_resources [style="dashed"]
-	Tenant -> ExtManagementSystem -> ems_tenant -> tenancy_resources [style="dashed"]
-	Tenant -> root_tenant -> tenancy_resources [style="dashed"]
-	Tenant -> tenant_group -> tenancy_resources [style="dashed"]
-	User -> current_user_group -> tenancy_resources [style="dashed"]
-	Tenant -> ems_tenant_group -> tenancy_resources [style="dashed"]
-	Tenant -> root_tenant_group -> tenancy_resources [style="dashed"]
+	MiqGroup -> owning_group_tenant -> tenancy_resources [style="dashed", label="E"]
+	User -> current_user_tenant -> tenancy_resources [style="dashed", label="E"]
+	Tenant -> ExtManagementSystem -> ems_tenant -> tenancy_resources [style="dashed", label="E"]
+	Tenant -> root_tenant -> tenancy_resources [style="dashed", label="E"]
+	Tenant -> tenant_group -> tenancy_resources [style="dashed", label="E"]
+	User -> current_user_group -> tenancy_resources [style="dashed", label="E"]
+	Tenant -> ems_tenant_group -> tenancy_resources [style="dashed", label="E"]
+	Tenant -> root_tenant_group -> tenancy_resources [style="dashed", label="E"]
 }
