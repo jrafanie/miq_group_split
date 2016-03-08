@@ -29,12 +29,12 @@ digraph MiqGroupSplitBefore {
 	current_group -> MiqGroup [style="dashed"]
 	MiqUserRole, current_tenant -> current_group [style="dashed"]
 
-	Tenant -> MiqGroup -> owning_group_tenant -> tenancy_resources [style="dashed"]
-	Tenant -> User -> current_user_tenant -> tenancy_resources [style="dashed"]
+	MiqGroup -> owning_group_tenant -> tenancy_resources [style="dashed"]
+	User -> current_user_tenant -> tenancy_resources [style="dashed"]
 	Tenant -> ExtManagementSystem -> ems_tenant -> tenancy_resources [style="dashed"]
 	Tenant -> root_tenant -> tenancy_resources [style="dashed"]
-	MiqGroup -> Tenant -> tenant_group -> tenancy_resources [style="dashed"]
-	MiqGroup -> User -> current_user_group -> tenancy_resources [style="dashed"]
-	MiqGroup -> Tenant -> ems_tenant_group -> tenancy_resources [style="dashed"]
-	MiqGroup -> Tenant -> root_tenant_group -> tenancy_resources [style="dashed"]
+	Tenant -> tenant_group -> tenancy_resources [style="dashed"]
+	User -> current_user_group -> tenancy_resources [style="dashed"]
+	Tenant -> ems_tenant_group -> tenancy_resources [style="dashed"]
+	Tenant -> root_tenant_group -> tenancy_resources [style="dashed"]
 }
