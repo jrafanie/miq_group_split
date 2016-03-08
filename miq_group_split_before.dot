@@ -9,7 +9,7 @@ digraph MiqGroupSplitBefore {
 	user_owned_resources [label="Approval\nRequest\nWidget\nWidgetSet\nWidgetContent\nReport\nServiceOrder"]
 	group_owned_resources [label="WidgetSet\nWidgetContent\nReport\nReportResult"]
 	owned_vms [label="Vm\nTemplate"]
-	user_filters [label="get_filters\nhas_filters?\nget_managed_filters\nget_belongsto_filters"]
+	filters [label="get_filters\nhas_filters?\nget_managed_filters\nget_belongsto_filters"]
 	user_levels [label="super_admin_user?\nadmin_user?\nself_service?\nlimited_self_service?"]
 	service_resources [label="Service\nServiceTemplate"]
 	tenancy_resources [label="ExtManagementSystem\nMiqGroup\nRequest\nRequestTask\nProvider\nService\nServiceTemplate\nServiceTemplateCatalog\nVmOrTemplate\nMiqAeDomain"]
@@ -21,8 +21,8 @@ digraph MiqGroupSplitBefore {
 	MiqProductFeature -> MiqUserRole
 	MiqGroup -> User, owned_vms, group_owned_resources, service_resources
 	User -> MiqUserRole, MiqGroup
-	User -> current_tenant, current_group, user_filters, user_levels [style="dashed"]
-	user_filters -> MiqGroup [style="dashed"]
+	User -> current_tenant, current_group, filters, user_levels [style="dashed"]
+	filters -> MiqGroup [style="dashed"]
 	user_levels -> MiqUserRole [style="dashed"]
 	User -> evm_owner -> owned_vms, service_resources [style="dashed"]
 	User -> user_owned_resources
