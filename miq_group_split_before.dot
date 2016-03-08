@@ -26,14 +26,15 @@ digraph MiqGroupSplitBefore {
 	User -> evm_owner -> owned_vms, service_resources [style="dashed"]
 
 	User -> MiqUserRole, MiqGroup
-	User -> current_tenant, current_group, filters, user_levels [style="dashed"]
+	User -> current_tenant, current_group, filters [style="dashed"]
+	User -> user_levels -> MiqUserRole [style="dashed"]
 	MiqGroup -> filters [style="dashed"]
-	user_levels -> MiqUserRole [style="dashed"]
 
 	User -> user_owned_resources
 	current_group -> MiqGroup [style="dashed"]
 	MiqUserRole, current_tenant -> current_group [style="dashed"]
 
+	# TenancyMixin
 	MiqGroup -> owning_group_tenant -> tenancy_resources [style="dashed"]
 	User -> current_user_tenant -> tenancy_resources [style="dashed"]
 	Tenant -> ExtManagementSystem -> ems_tenant -> tenancy_resources [style="dashed"]
