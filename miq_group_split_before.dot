@@ -12,6 +12,7 @@ digraph MiqGroupSplitBefore {
 	user_filters [label="get_filters\nhas_filters?\nget_managed_filters\nget_belongsto_filters"]
 	user_levels [label="super_admin_user?\nadmin_user?\nself_service?\nlimited_self_service?"]
 	service_resources [label="Service\nServiceTemplate"]
+	tenancy_resources [label="ExtManagementSystem\nMiqGroup\nRequest\nRequestTask\nProvider\nService\nServiceTemplate\nServiceTemplateCatalog\nVmOrTemplate\nMiqAeDomain"]
 
 	Tenant -> MiqGroup
 	Tenant -> default_miq_group -> MiqGroup [style="dashed"]
@@ -27,4 +28,13 @@ digraph MiqGroupSplitBefore {
 	User -> user_owned_resources
 	current_group -> MiqGroup [style="dashed"]
 	MiqUserRole, current_tenant -> current_group [style="dashed"]
+
+	Tenant -> MiqGroup -> owning_group_tenant -> tenancy_resources [style="dashed"]
+	Tenant -> User -> current_user_tenant -> tenancy_resources [style="dashed"]
+	Tenant -> ExtManagementSystem -> ems_tenant -> tenancy_resources [style="dashed"]
+	Tenant -> root_tenant -> tenancy_resources [style="dashed"]
+	MiqGroup -> Tenant -> tenant_group -> tenancy_resources [style="dashed"]
+	MiqGroup -> User -> current_user_group -> tenancy_resources [style="dashed"]
+	MiqGroup -> Tenant -> ems_tenant_group -> tenancy_resources [style="dashed"]
+	MiqGroup -> Tenant -> root_tenant_group -> tenancy_resources [style="dashed"]
 }
