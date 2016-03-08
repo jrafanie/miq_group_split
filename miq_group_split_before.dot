@@ -34,7 +34,7 @@ digraph MiqGroupSplitBefore {
 	User -> user_owned_resources, widgetset_content
 	current_group -> MiqGroup [style="dashed"]
 	MiqUserRole -> current_group -> User [style="dashed"]
-	Tenant -> current_tenant -> current_group -> User [style="dashed"]
+	Tenant -> current_tenant -> current_group [style="dashed"]
 
 	# TenancyMixin
 	MiqGroup -> owning_group_tenant -> tenancy_resources [style="dashed"]
