@@ -1,0 +1,16 @@
+digraph MiqGroupSplitMiqUserRoleExtract {
+  graph [ fontname="Helvetica-Bold" ]
+  node  [ id="\N" shape="Mrecord" style="filled" fontname="Helvetica" fillcolor="#ffffff" penwidth="2" ]
+  edge  [ arrowsize="0.5" fontname="Helvetica" ]
+
+  label="MiqGroup Split MiqUserRoleExtract"
+  style="rounded"
+
+  Tenant -> MiqGroup [label="E"]
+  Tenant -> MiqGroup [label="UG"]
+  MiqGroup -> Entitlement [label="E"]
+  Entitlement -> MiqUserRole [label="E"]
+  MiqUserRole -> MiqProductFeature [label="E"]
+  MiqProductFeature -> MiqUserRole [label="E"]
+  MiqGroup -> User [label="UG"]
+}
